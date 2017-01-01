@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1095518057351",
+    "firebase_url": "https://chat-6beae.firebaseio.com",
+    "project_id": "chat-6beae",
+    "storage_bucket": "chat-6beae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1095518057351:android:02d52e0dfdfab492",
+        "android_client_info": {
+          "package_name": "scrath.techie.chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1095518057351-dl8l6td803prsujq0oug6osdl81ieen0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "scrath.techie.chat",
+            "certificate_hash": "2393E82E93CECA28B6431AFDF3EA489914999124"
+          }
+        },
+        {
+          "client_id": "1095518057351-l7lnl136p4vjhjp2uht3ldsqhg38e69m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6yvtOXeQ7n0Lcw1Rc5UEEVsCwpXDjYA0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1095518057351-l7lnl136p4vjhjp2uht3ldsqhg38e69m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
