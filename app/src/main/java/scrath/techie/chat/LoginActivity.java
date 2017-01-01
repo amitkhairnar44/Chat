@@ -23,21 +23,9 @@ public class LoginActivity extends AppCompatActivity {
     //private static final String TAG = "Log";
     private FirebaseAuth auth;
     ProgressBar progressBar;
-    EditText useremail,userpassword;
-    Button login,sign;
+    EditText useremail,userpassword,signemail,signpass;
+    Button login,sign,signup;
     ImageView imageView;
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,20 +35,69 @@ public class LoginActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         useremail = (EditText) findViewById(R.id.user_email);
         userpassword = (EditText) findViewById(R.id.user_password);
+        signemail = (EditText) findViewById(R.id.signemail);
+        signpass = (EditText) findViewById(R.id.signpass);
         login = (Button) findViewById(R.id.user_login);
         sign = (Button) findViewById(R.id.sign);
+        signup = (Button) findViewById(R.id.signup);
         imageView = (ImageView) findViewById(R.id.logo);
 
         auth = FirebaseAuth.getInstance();
 
-            sign.setOnClickListener(new View.OnClickListener() {
+        sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this,SignupActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(LoginActivity.this,SignupActivity.class);
+//                startActivity(intent);
+                signemail.setVisibility(View.VISIBLE);
+                signpass.setVisibility(View.VISIBLE);
+                signup.setVisibility(View.VISIBLE);
+                useremail.setVisibility(View.GONE);
+                userpassword.setVisibility(View.GONE);
+                login.setVisibility(View.GONE);
+                sign.setVisibility(View.GONE);
             }
         });
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                String email = signemail.getText().toString();
+                final String password = signpass.getText().toString();
+                if (TextUtils.isEmpty(email)) {
+                    Snackbar.make(view,"Enter email address!",Snackbar.LENGTH_LONG)
+                            .show();
+                    //Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
+                if (TextUtils.isEmpty(password)) {
+                    Snackbar.make(view,"Enter password!",Snackbar.LENGTH_LONG)
+                            .show();
+                    //Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                progressBar.setVisibility(View.VISIBLE);
+                auth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                Snackbar.make(view,"Signup successful",Snackbar.LENGTH_LONG)
+                                        .show();
+                                progressBar.setVisibility(View.GONE);
+                                // If sign in fails, display a message to the user. If sign in succeeds
+                                // the auth state listener will be notified and logic to handle the
+                                // signed in user can be handled in the listener.
+                                if (!task.isSuccessful()) {
+                                    Snackbar.make(view,"Authentication failed!",Snackbar.LENGTH_LONG)
+                                            .show();
+                                } else {
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    finish();
+                                }
+                            }
+                        });
+            }
+        });
 //        imageView.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -69,6 +106,7 @@ public class LoginActivity extends AppCompatActivity {
 //
 //            }
 //        });
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
