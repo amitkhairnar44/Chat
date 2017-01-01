@@ -18,7 +18,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignupActivity" android:label="Sign up"/>
         <activity
             android:name=".MainActivity"
             android:label="User Home"
